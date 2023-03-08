@@ -21,7 +21,7 @@
                     </li>
                 </ng-template>
 
-                <li class="nav-item dropdown" *ngIf="user$ | async as user; else anonymousUser">
+                <li class="nav-item dropdown" *ngIf="auth.user$ | async as user; else anonymousUser">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ user.displayName }}</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/my-orders">Mis ordenes</a></li>
