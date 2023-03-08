@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor() { }
+  constructor(private afAuth: AngularFireAuth) { }
 
-  ngOnInit(): void {
-  }
-
-  public login(): void {
-    
+  public loginWithGoogle(): void {
+    console.log('Presionando el boton');
+    this.afAuth.signInWithRedirect(new GoogleAuthProvider())
+      .then((result) => {
+        console.log('Te has logueado correctamente');
+      }).catch((error) => {
+        console.log('En el error');
+        console.log(error);
+      });
   }
 
 }
