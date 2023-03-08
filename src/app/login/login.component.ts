@@ -12,14 +12,7 @@ export class LoginComponent {
   constructor(private afAuth: AngularFireAuth) { }
 
   public loginWithGoogle(): void {
-    console.log('Presionando el boton');
-    this.afAuth.signInWithRedirect(new GoogleAuthProvider())
-      .then((result) => {
-        console.log('Te has logueado correctamente');
-      }).catch((error) => {
-        console.log('En el error');
-        console.log(error);
-      });
+    this.afAuth.signInWithRedirect(new GoogleAuthProvider());
   }
 
 }
