@@ -3,17 +3,17 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRoute } from '@angular/router';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/compat';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  
-  user$: Observable<any>;
+  user$: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth, private route: ActivatedRoute) {
-    this.user$ = afAuth.authState;
+    this.user$ = afAuth.authState as Observable<firebase.User>;
   }
 
   public login(): void {
