@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,10 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = 'ra-fitness-sport';
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private userService: UserService, private auth: AuthService, private router: Router) {
     auth.user$.subscribe(user => {
       if(user) {
+        userService.save(user);
         let returnUrl = localStorage.getItem('returnUrl') || '/';
         router.navigateByUrl(returnUrl);
       }
