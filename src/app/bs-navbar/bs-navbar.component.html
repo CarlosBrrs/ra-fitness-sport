@@ -26,8 +26,8 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/my-orders">Mis ordenes</a></li>
                         <ng-container *ngIf="appUser.isAdmin">
-                            <li><a class="dropdown-item" routerLink="admin/orders">Gestionar ordenes</a></li>
-                            <li><a class="dropdown-item" routerLink="admin/products">Gestionar productos</a></li>
+                            <li><a class="dropdown-item" routerLink="/admin/orders">Gestionar ordenes</a></li>
+                            <li><a class="dropdown-item" routerLink="/admin/products">Gestionar productos</a></li>
                         </ng-container>
                         
                         <li><a class="dropdown-item" (click)="logout()">Log out</a></li>

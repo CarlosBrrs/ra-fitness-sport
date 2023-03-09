@@ -4,7 +4,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 
-
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -22,11 +21,14 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BsNavbarComponent
+    BsNavbarComponent,
+    ProductFormComponent,
+    AdminProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
 
       //admin users
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+      {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard]},
       
     ])

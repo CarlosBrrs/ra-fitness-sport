@@ -12,4 +12,8 @@ export class AdminProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  log() {
+    console.log()
+  }
+
 }
