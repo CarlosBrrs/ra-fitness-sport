@@ -1,30 +1,46 @@
 <form #f="ngForm" (ngSubmit)="save(f.value)">
     <div class="form-group">
         <label for="title">Titulo</label>
-        <input ngModel name="title" id="title" type="text" class="form-control">
+        <input #title="ngModel" ngModel name="title" id="title" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+            El titulo es requerido
+        </div>
     </div>
     <div class="form-group">
         <label for="price">Precio</label>
         <div class="input-group">
             <span class="input-group-text">$</span>
-            <input ngModel name="price" id="price" type="number" class="form-control">
+            <input #price="ngModel" ngModel name="price" id="price" type="number" class="form-control" required [min]="0">
         </div>
-        
+        <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+            <div *ngIf="price.errors?.['required']">El precio es requerido</div>
+            <div *ngIf="price.errors?.['min']">El precio debe ser 0 o mayor</div>
+            
+        </div>        
     </div>
     <div class="form-group">
         <label for="category">Categoría</label>
-        <select ngModel name="category" id="category" class="form-control form-select">
+        <select #category="ngModel" ngModel name="category" id="category" class="form-control form-select" required>
             <option value=""></option>
-            <option *ngFor="let category of categories$ | async" [value]="category.key">{{ category.payload.val().name  }}</option>
+            <option *ngFor="let category of categories$ | async" [value]="category.key">{{ category.payload.val().name }}</option>
         </select>
+        <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+            La categoría es requerido
+        </div>
     </div>
     <div class="form-group">
         <label for="description">Descripción</label>
-        <textarea ngModel name="description" class="form-control" id="description" style="height: 100%"></textarea>
+        <textarea #description="ngModel" ngModel name="description" class="form-control" id="description" style="height: 100%" required></textarea>
+        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+            La descripción es requerida
+        </div>
     </div>
     <div class="form-group">
-        <label for="imageUrl">URL Imagen</label>
-        <input ngModel name="imageUrl" id="imageUrl" type="text" class="form-control">
+        <label for="imageUrl">Imagen del producto</label>
+        <input ngModel #imageUrl="ngModel" type="file" id="imageUrl" name="imageUrl" class="form-control" title="Seleccionar archivo" required (change)="capturarImg($event)"/>
+        <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+            La imagen es requerida
+        </div>
     </div>
     <button class="btn btn-primary my-2">Guardar</button>
 </form>
