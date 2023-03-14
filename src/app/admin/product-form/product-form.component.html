@@ -5,18 +5,20 @@
                 <div class="form-group d-flex row justify-content-between align-items-center my-2">
                     <label for="title" class="align-left mr-3 col-sm-2 col-form-label">Titulo:</label>
                     <div class="col-sm-10 col">
-                        <input #title="ngModel" ngModel name="title" id="title" type="text" class="form-control flex-grow-1" required>
+                        <input #title="ngModel" ngModel name="title" id="title" type="text"
+                            class="form-control flex-grow-1" required>
                         <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
                             El titulo es requerido
                         </div>
-                    </div>      
+                    </div>
                 </div>
-                
+
                 <div class="form-group d-flex row justify-content-between align-items-center my-2">
                     <label for="price" class="align-left mr-3 col-sm-2 col-form-label">Precio:</label>
                     <div class="col-sm-10 col input-group">
                         <span class="input-group-text">$</span>
-                        <input #price="ngModel" ngModel name="price" id="price" type="number" class="form-control flex-grow-1" required>
+                        <input #price="ngModel" ngModel name="price" id="price" type="number"
+                            class="form-control flex-grow-1" required>
                     </div>
                     <div class="alert alert-danger col-sm-10 offset-sm-2" *ngIf="price.touched && price.invalid">
                         El precio es requerido
@@ -26,54 +28,57 @@
                 <div class="form-group d-flex row justify-content-between align-items-center my-2">
                     <label for="category" class="align-left mr-3 col-sm-2 col-form-label">Categoría:</label>
                     <div class="col-sm-10 col">
-                        <select #category="ngModel" ngModel name="category" id="category" class="form-control form-select flex-grow-1" required>
+                        <select #category="ngModel" ngModel name="category" id="category"
+                            class="form-control form-select flex-grow-1" required>
                             <option value=""></option>
-                            <option *ngFor="let category of categories$ | async" [value]="category.key">{{ category.payload.val().name
+                            <option *ngFor="let category of categories$ | async" [value]="category.key">{{
+                                category.payload.val().name
                                 }}</option>
                         </select>
                         <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
                             La categoría es requerida
                         </div>
-                    </div>      
+                    </div>
                 </div>
 
                 <div class="form-group d-flex row justify-content-between align-items-center my-2">
                     <label for="description" class="align-left mr-3 col-sm-2 col-form-label">Descripción:</label>
                     <div class="col-sm-10 col">
-                        <textarea #description="ngModel" ngModel name="description" class="form-control flex-grow-1" id="description"
-                        style="height: 100%" required></textarea>
-                    <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
-                        La descripción es requerida
+                        <textarea #description="ngModel" ngModel name="description" class="form-control flex-grow-1"
+                            id="description" style="height: 100%" required></textarea>
+                        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                            La descripción es requerida
+                        </div>
                     </div>
-                    </div>      
                 </div>
 
                 <div class="form-group d-flex row justify-content-between align-items-center my-2">
                     <label for="imageUrl" class="align-left mr-3 col-sm-2 col-form-label">Imagen producto:</label>
                     <div class="col-sm-10 col">
-                        <input ngModel #imageUrl="ngModel" type="file" id="imageUrl" name="imageUrl" class="form-control flex-grow-1"
-                        title="Seleccionar archivo" required (change)="capturarImg($event)" />
-                    <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
-                        La imagen es requerida
+                        <input ngModel #imageUrl="ngModel" type="file" id="imageUrl" name="imageUrl"
+                            class="form-control flex-grow-1" title="Seleccionar archivo" required
+                            (change)="catchImg($event)" />
+                        <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                            La imagen es requerida
+                        </div>
                     </div>
-                    </div>      
                 </div>
 
                 <button class="btn btn-primary my-2">Guardar producto</button>
             </form>
         </div>
-      <div class="col-md-6">
-        <div class="card" style="width: 18rem;">
-            <img [src]="imagenURL" class="card-img-top" alt="..." *ngIf="imageLoaded">
-            <div class="card-body">
-              <h5 class="card-title">{{ title.value }}</h5>
-              <p class="card-text">{{ description.value }}</p>
-              <p class="card-text">{{ price.value | currency:'COP':'symbol-narrow':'1.0' }}</p>
+        <div class="col-md-6">
+            <div class="card" style="width: 18rem;">
+                <img [src]="imagenURL" class="card-img-top" alt="..." *ngIf="imageLoaded">
+                <div class="card-body">
+                    <h5 class="card-title">{{ title.value }}</h5>
+                    <p class="card-text">{{ description.value }}</p>
+                    <p class="card-text">{{ price.value | currency:'COP':'symbol-narrow':'1.0' }}</p>
+                </div>
             </div>
-          </div>
-      </div>
+        </div>
     </div>
-  </div>
+</div>
 <div class="row">
-    
+
 </div>

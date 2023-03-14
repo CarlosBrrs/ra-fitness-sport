@@ -25,7 +25,7 @@ export class ProductFormComponent implements OnInit {
 
   public async save(product: any) {
     try {
-      const url = await this.guardarImagen(this.file, product.category);
+      const url = await this.saveImg(this.file, product.category);
       product.imageUrl = url;
       console.log(product);
       await this.productService.create(product);
@@ -35,7 +35,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
   
-  async guardarImagen(file: File, category: string): Promise<string> {
+  async saveImg(file: File, category: string): Promise<string> {
     const filePath = `${category}/${file.name}`;
     const fileRef = this.storage.ref(filePath);
     await fileRef.put(file).task;
@@ -43,7 +43,7 @@ export class ProductFormComponent implements OnInit {
     return lastValueFrom(this.downloadURL$);
   }
 
-  capturarImg(event: any): void {
+  catchImg(event: any): void {
     this.file =  event.target.files[0];
     const lectorImagen = new FileReader();
 
