@@ -4,6 +4,7 @@ import { from, lastValueFrom, map, Observable, switchMap } from 'rxjs';
 import { CategoryService } from 'src/app/category.service';
 import { ProductService } from 'src/app/product.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -14,8 +15,11 @@ export class ProductFormComponent implements OnInit {
 
   categories$: Observable<any[]>;
   file!: File;
+  downloadURL$: Observable<any> = new Observable<any>;
+  imageLoaded = false;
+  imagenURL: any;
 
-  constructor(categoryService: CategoryService, private productService: ProductService, private storage: AngularFireStorage) {
+  constructor(private router: Router, private categoryService: CategoryService, private productService: ProductService, private storage: AngularFireStorage) {
     this.categories$ = categoryService.getCategories().snapshotChanges();
   }
 
@@ -25,6 +29,7 @@ export class ProductFormComponent implements OnInit {
       product.imageUrl = url;
       console.log(product);
       await this.productService.create(product);
+      this.router.navigate(['/admin/products']);
     } catch (error) {
       console.log('Error al crear el producto:', error);
     }
@@ -34,12 +39,24 @@ export class ProductFormComponent implements OnInit {
     const filePath = `${category}/${file.name}`;
     const fileRef = this.storage.ref(filePath);
     await fileRef.put(file).task;
-    const downloadURL$ = fileRef.getDownloadURL();
-    return lastValueFrom(downloadURL$);
+    this.downloadURL$ = fileRef.getDownloadURL();
+    return lastValueFrom(this.downloadURL$);
   }
 
   capturarImg(event: any): void {
     this.file =  event.target.files[0];
+    const lectorImagen = new FileReader();
+
+    lectorImagen.onload = () => {
+      this.imagenURL = lectorImagen.result;
+      this.imageLoaded = true;
+    }
+    console.log(this.imagenURL)
+    lectorImagen.readAsDataURL(this.file);
+  }
+
+  mostrarImg() {
+    return this.file;
   }
 
   ngOnInit(): void {
