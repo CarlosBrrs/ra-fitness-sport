@@ -5,7 +5,7 @@
                 <div class="form-group d-flex row justify-content-between align-items-center my-2">
                     <label for="title" class="align-left mr-3 col-sm-2 col-form-label">Titulo:</label>
                     <div class="col-sm-10 col">
-                        <input #title="ngModel" ngModel name="title" id="title" type="text"
+                        <input #title="ngModel" [(ngModel)]="product.title" name="title" id="title" type="text"
                             class="form-control flex-grow-1" required>
                         <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
                             El titulo es requerido
@@ -17,7 +17,7 @@
                     <label for="price" class="align-left mr-3 col-sm-2 col-form-label">Precio:</label>
                     <div class="col-sm-10 col input-group">
                         <span class="input-group-text">$</span>
-                        <input #price="ngModel" ngModel name="price" id="price" type="number"
+                        <input #price="ngModel" [(ngModel)]="product.price" name="price" id="price" type="number"
                             class="form-control flex-grow-1" required>
                     </div>
                     <div class="alert alert-danger col-sm-10 offset-sm-2" *ngIf="price.touched && price.invalid">
@@ -28,12 +28,10 @@
                 <div class="form-group d-flex row justify-content-between align-items-center my-2">
                     <label for="category" class="align-left mr-3 col-sm-2 col-form-label">Categoría:</label>
                     <div class="col-sm-10 col">
-                        <select #category="ngModel" ngModel name="category" id="category"
+                        <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category"
                             class="form-control form-select flex-grow-1" required>
                             <option value=""></option>
-                            <option *ngFor="let category of categories$ | async" [value]="category.key">{{
-                                category.payload.val().name
-                                }}</option>
+                            <option *ngFor="let category of categories$ | async" [value]="category.key">{{ category.payload.val().name }}</option>
                         </select>
                         <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
                             La categoría es requerida
@@ -44,7 +42,7 @@
                 <div class="form-group d-flex row justify-content-between align-items-center my-2">
                     <label for="description" class="align-left mr-3 col-sm-2 col-form-label">Descripción:</label>
                     <div class="col-sm-10 col">
-                        <textarea #description="ngModel" ngModel name="description" class="form-control flex-grow-1"
+                        <textarea #description="ngModel" [(ngModel)]="product.description" name="description" class="form-control flex-grow-1"
                             id="description" style="height: 100%" required></textarea>
                         <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
                             La descripción es requerida
@@ -71,9 +69,9 @@
             <div class="card" style="width: 18rem;">
                 <img [src]="imagenURL" class="card-img-top" alt="..." *ngIf="imageLoaded">
                 <div class="card-body">
-                    <h5 class="card-title">{{ title.value }}</h5>
-                    <p class="card-text">{{ description.value }}</p>
-                    <p class="card-text">{{ price.value | currency:'COP':'symbol-narrow':'1.0' }}</p>
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text">{{ product.price | currency:'COP':'symbol-narrow':'1.0' }}</p>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ export class AdminProductsComponent implements OnInit {
   products$: Observable<any[]>;
 
   constructor(private productService: ProductService) {
-    this.products$ = this.productService.getAll().snapshotChanges();
+    this.products$ = this.productService.getAllSnapshot();
   }
 
   ngOnInit(): void {
