@@ -49,10 +49,17 @@ export class ProductFormComponent implements OnInit {
         product.imageUrl = url;
         await this.productService.create(product);
       }
-      await this.router.navigate(['/admin/products']);
+      this.router.navigate(['/admin/products']);
     } catch (error) {
       console.log(`Error al ${this.productId ? 'actualizar' : 'crear'} el producto:`, error);
     }
+  }
+
+  delete() {
+    if(confirm('¿Seguro que deseas eliminar este producto? Esta accion no puede deshacerse')) {
+      this.productService.delete(this.productId);
+      this.router.navigate(['/admin/products']);
+    } else return;
   }
 
   async saveImg(file: any, category: string): Promise<string> {

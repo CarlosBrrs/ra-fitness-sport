@@ -17,6 +17,10 @@ export class ProductService {
     return this.db.object('/products/' + productId).update(product);
   }
 
+  public delete(productId: string): Promise<void> {
+    return this.db.object('/products/' + productId).remove();
+  }
+
   getAllSnapshot() {
     return this.db.list('/products').snapshotChanges();
   }
