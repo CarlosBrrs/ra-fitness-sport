@@ -9,8 +9,12 @@ export class ProductService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  create(product: NgForm) {
+  public async create(product: any): Promise<void> {
     this.db.list('/products').push(product);
+  }
+
+  public async update(product: any, productId: string): Promise<void> {
+    return this.db.object('/products/' + productId).update(product);
   }
 
   getAllSnapshot() {

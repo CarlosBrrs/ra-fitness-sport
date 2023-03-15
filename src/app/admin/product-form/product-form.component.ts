@@ -25,19 +25,37 @@ export class ProductFormComponent implements OnInit {
     this.productId = this.route.snapshot.paramMap.get('id') as string;
   }
 
+  ngOnInit(): void {
+    if (this.productId) {
+      this.productService.getValueChanges(this.productId).pipe(take(1)).subscribe(p => {
+        this.product = p
+        const pathReference = this.storage.refFromURL(this.product.imageUrl);
+        firstValueFrom(pathReference.getDownloadURL()).then((url: string) => {
+          this.imagenURL = url;
+          this.imageLoaded = true;
+        }).catch((error) => {
+          console.log(error);
+        });
+      });
+    };
+  }
+
   public async save(product: any) {
     try {
-      const url = await this.saveImg(this.file, product.category);
-      product.imageUrl = url;
-      console.log(product);
-      await this.productService.create(product);
-      this.router.navigate(['/admin/products']);
+      if (this.productId) {
+        await this.productService.update(product, this.productId);
+      } else {
+        const url = await this.saveImg(this.file, product.category);
+        product.imageUrl = url;
+        await this.productService.create(product);
+      }
+      await this.router.navigate(['/admin/products']);
     } catch (error) {
-      console.log('Error al crear el producto:', error);
+      console.log(`Error al ${this.productId ? 'actualizar' : 'crear'} el producto:`, error);
     }
   }
 
-  async saveImg(file: File, category: string): Promise<string> {
+  async saveImg(file: any, category: string): Promise<string> {
     const filePath = `${category}/${file.name}`;
     const fileRef = this.storage.ref(filePath);
     await fileRef.put(file).task;
@@ -54,20 +72,5 @@ export class ProductFormComponent implements OnInit {
       this.imageLoaded = true;
     }
     lectorImagen.readAsDataURL(this.file);
-  }
-
-  ngOnInit(): void {
-    if (this.productId) {
-      this.productService.getValueChanges(this.productId).pipe(take(1)).subscribe(p => {
-        this.product = p
-        const pathReference = this.storage.refFromURL(this.product.imageUrl);
-        firstValueFrom(pathReference.getDownloadURL()).then((url: string) => {
-          this.imagenURL = url;
-          this.imageLoaded = true;
-        }).catch((error) => {
-          console.log(error);
-        });
-      });
-    };
   }
 }
