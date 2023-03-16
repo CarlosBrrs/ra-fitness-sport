@@ -26,6 +26,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('en el ngOnInit')
     if (this.productId) {
       this.productService.getValueChanges(this.productId).pipe(take(1)).subscribe(p => {
         this.product = p
@@ -42,13 +43,11 @@ export class ProductFormComponent implements OnInit {
 
   public async save(product: any) {
     try {
-      if (this.productId) {
-        await this.productService.update(product, this.productId);
-      } else {
-        const url = await this.saveImg(this.file, product.category);
-        product.imageUrl = url;
-        await this.productService.create(product);
-      }
+      const url = await this.saveImg(this.file, product.category);
+      product.imageUrl = url;
+      this.productId ? 
+      await this.productService.update(product, this.productId) :
+      await this.productService.create(product);
       this.router.navigate(['/admin/products']);
     } catch (error) {
       console.log(`Error al ${this.productId ? 'actualizar' : 'crear'} el producto:`, error);

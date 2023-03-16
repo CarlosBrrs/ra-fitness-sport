@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { NgForm } from '@angular/forms';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,12 @@ export class ProductService {
     return this.db.object('/products/' + productId).remove();
   }
 
-  getAllSnapshot() {
-    return this.db.list('/products').snapshotChanges();
+  getAllSnapshotValue(): Observable<any[]> {
+    return this.db.list('/products').snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() as any[]}))
+      )
+    );
   }
 
   getValueChanges(productId: string) {
