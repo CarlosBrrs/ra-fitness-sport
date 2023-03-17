@@ -6,6 +6,7 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
@@ -37,6 +38,7 @@ import { ProductService } from './product.service';
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

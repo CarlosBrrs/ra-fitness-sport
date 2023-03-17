@@ -13,6 +13,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   subscription: Subscription;
+  p: number = 1;
 
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getAllSnapshotValue().subscribe(products => {
