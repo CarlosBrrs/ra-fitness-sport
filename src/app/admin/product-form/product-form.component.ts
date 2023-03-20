@@ -21,7 +21,7 @@ export class ProductFormComponent implements OnInit {
   productId: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private productService: ProductService, private storage: AngularFireStorage) {
-    this.categories$ = categoryService.getCategoriesShapshotChanges();
+    this.categories$ = categoryService.getAallShapshot();
     this.productId = this.route.snapshot.paramMap.get('id') as string;
   }
 

@@ -8,7 +8,7 @@ export class CategoryService {
 
   constructor(private db: AngularFireDatabase) {}
 
-  public getCategoriesShapshotChanges() {
+  public getAallShapshot() {
     return this.db.list('/categories', values => values.orderByChild('name')).snapshotChanges();
   }
   

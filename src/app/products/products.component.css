@@ -21,7 +21,8 @@
     max-height: 500px;
 }
 
-.col-6 .col-md-4 {
+.col-6,
+.col-md-4 {
     /* Elimina la altura fija */
     height: auto;
 }
@@ -40,7 +41,7 @@
 }
 
 .description {
-    
+
     min-height: 6em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -52,5 +53,19 @@
 }
 
 .description:only-child {
+    text-align: left;
+}
+
+#navbarCategories {
+    align-items: flex-start;
+}
+
+.nav-link.active {
+    background-color: #E7F0FA;
+    border-color: #BFD3F3;
+    color: #0D6EFD;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
     text-align: left;
 }
