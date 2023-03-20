@@ -1,0 +1,13 @@
+#navbarCategories {
+    align-items: flex-start;
+}
+
+.nav-link.active {
+    background-color: #E7F0FA;
+    border-color: #BFD3F3;
+    color: #0D6EFD;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+    text-align: left;
+}

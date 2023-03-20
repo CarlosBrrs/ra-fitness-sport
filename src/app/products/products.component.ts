@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ActivatedRoute } from '@angular/router';
-import { firstValueFrom, Observable } from 'rxjs';
-import { CategoryService } from '../category.service';
+import { firstValueFrom } from 'rxjs';
 import { Product } from '../models/product';
 import { ProductService } from '../product.service';
 
@@ -17,10 +16,9 @@ export class ProductsComponent {
   filteredProducts: Product[] = [];
   imagenURL: any;
   imageLoaded = false;
-  categories$: Observable<any[]>
   category!: string;
 
-  constructor(route: ActivatedRoute, private categoryService: CategoryService, private productService: ProductService, private storage: AngularFireStorage) {
+  constructor(route: ActivatedRoute, private productService: ProductService, private storage: AngularFireStorage) {
     productService.getAllSnapshot().subscribe(products => {
       this.filteredProducts = this.products = products;
       this.filteredProducts.forEach(p => {
@@ -36,7 +34,7 @@ export class ProductsComponent {
           this.products.filter(p => this.category === p.category) : this.products
       });
     });
-    this.categories$ = categoryService.getAallShapshot();
+    
     
   }
 }

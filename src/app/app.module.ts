@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -28,6 +27,7 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { ProductService } from './product.service';
     BsNavbarComponent,
     ProductFormComponent,
     AdminProductsComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,
