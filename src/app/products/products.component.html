@@ -5,17 +5,7 @@
             <div class="row g-2 align-items-stretch d-flex">
                 <ng-container *ngFor="let product of filteredProducts">
                     <div class="col-6 col-md-4">
-                        <div class="card h-100">
-                            <div class="card-img-container">
-                                <img [src]="product.imageUrl" class="card-img-top" alt="..." *ngIf="imageLoaded">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ product.title }}</h5>
-                                <h6 class="card-text">{{ product.price | currency:'COP':'symbol-narrow':'1.0' }}</h6>
-                                <p class="card-text description">{{ product.description }}</p>
-                                <a href="#" class="btn btn-primary">Agregar a Carrito</a>
-                            </div>
-                        </div>
+                        <product-card [product]="product" [imageUrl]="product.imageUrl"></product-card>
                     </div>
                 </ng-container>
             </div>

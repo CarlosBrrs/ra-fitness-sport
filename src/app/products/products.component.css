@@ -1,26 +1,3 @@
-.card-img-top {
-    height: 50%;
-    object-fit: contain;
-}
-
-.card-img-container {
-    height: 200px;
-    /* altura fija para la imagen */
-    overflow: hidden;
-    /* para recortar la imagen si es necesario */
-}
-
-.card-img-container img {
-    height: 100%;
-    /* para ajustar la imagen a la altura del contenedor */
-    object-fit: contain;
-    /* para recortar la imagen si es necesario */
-}
-
-.card {
-    max-height: 500px;
-}
-
 .col-6,
 .col-md-4 {
     /* Elimina la altura fija */
@@ -33,26 +10,3 @@
     display: flex;
     flex-wrap: wrap;
 }
-
-.card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.description {
-
-    min-height: 6em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    text-align: justify;
-    text-justify: inter-word;
-}
-
-.description:only-child {
-    text-align: left;
-}
-
