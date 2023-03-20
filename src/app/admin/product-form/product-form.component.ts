@@ -26,7 +26,6 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('en el ngOnInit')
     if (this.productId) {
       this.productService.getValueChanges(this.productId).pipe(take(1)).subscribe(p => {
         this.product = p

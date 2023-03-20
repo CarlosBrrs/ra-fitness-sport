@@ -18,7 +18,6 @@
         <tr *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 10, currentPage: p }">
             <td>{{ product.title }}</td>
             <td>{{ product.price | currency:'COP':'symbol-narrow':'1.0' }}</td>
-            
             <td>
                 <a [routerLink]="['/admin/products/', product.key]">Editar</a>
             </td>

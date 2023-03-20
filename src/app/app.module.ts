@@ -34,7 +34,8 @@ import { ProductService } from './product.service';
     AppComponent,
     BsNavbarComponent,
     ProductFormComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,7 @@ import { ProductService } from './product.service';
     ReactiveFormsModule,
     RouterModule.forRoot([
       //anonymous users
-      {path: '', component: HomeComponent},
+      {path: '', component: ProductsComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'login', component: LoginComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
