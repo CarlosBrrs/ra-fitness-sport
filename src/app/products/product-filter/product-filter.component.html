@@ -1,16 +1,19 @@
-<nav class="navbar navbar-expand-md navbar-ligth d-flex flex-md-column">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategories"
-        aria-controls="navbarCategories" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse w-100" id="navbarCategories">
-        <ul class="navbar-nav w-100 d-flex flex-md-column text-center text-md-end align-items-start">
-            <li class="nav-item">
-                <a [class.active]="category === ''" routerLink="/" class="nav-link" aria-current="page">Todos los productos</a>
-            </li>
-            <li *ngFor="let category of categories$ | async" class="nav-item">
-                <a routerLinkActive="active" routerLink="/" [queryParams]="{category: category.key}" class="nav-link" aria-current="page">{{ category.payload.val().name }}</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<div class="sticky-top">
+    <nav class="navbar navbar-expand-md navbar-ligth d-flex flex-md-column">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategories"
+            aria-controls="navbarCategories" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse w-100" id="navbarCategories">
+            <ul class="navbar-nav w-100 d-flex flex-md-column text-center text-md-end align-items-start">
+                <li class="nav-item">
+                    <a [class.active]="category === ''" routerLink="/" class="nav-link" aria-current="page">Todos los productos</a>
+                </li>
+                <li *ngFor="let category of categories$ | async" class="nav-item">
+                    <a routerLinkActive="active" routerLink="/" [queryParams]="{category: category.key}" class="nav-link" aria-current="page">{{ category.payload.val().name }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        
+</div>

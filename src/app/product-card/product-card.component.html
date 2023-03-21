@@ -6,6 +6,9 @@
         <h5 class="card-title">{{ product.title }}</h5>
         <h6 class="card-text">{{ product.price | currency:'COP':'symbol-narrow':'1.0' }}</h6>
         <p class="card-text description">{{ product.description }}</p>
-        <a *ngIf="showActions" href="#" class="btn btn-primary">Agregar a Carrito</a>
+        
+    </div>
+    <div class="card-footer d-grid gap-2">
+        <a *ngIf="showActions" href="#" class="btn btn-primary btn-block">Agregar a Carrito</a>
     </div>
 </div>

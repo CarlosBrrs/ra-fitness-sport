@@ -42,3 +42,7 @@
 .description:only-child {
     text-align: left;
 }
+
+.card-footer {
+    padding: 0;
+}

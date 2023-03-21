@@ -2,7 +2,7 @@
     <product-filter [category]="this.category"></product-filter>
     <main class="ps-0 ps-md-5 flex-grow-1">
         <div class="container text-center">
-            <div class="row g-2 align-items-stretch d-flex">
+            <div class="row g-3 align-items-stretch d-flex">
                 <ng-container *ngFor="let product of filteredProducts">
                     <div class="col-6 col-md-4">
                         <product-card [product]="product" [imageUrl]="product.imageUrl"></product-card>
