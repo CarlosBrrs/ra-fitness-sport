@@ -8,7 +8,10 @@
         <p class="card-text description">{{ product.description }}</p>
         
     </div>
-    <div class="card-footer d-grid gap-2">
-        <button *ngIf="showActions" class="btn btn-primary btn-block" (click)="addToCart(product)">Agregar a Carrito</button>
+    <div *ngIf="showActions" class="card-footer d-grid gap-2">
+        <button class="btn btn-primary btn-block" (click)="addToCart(product)">Agregar a Carrito</button>
+        <div>
+            {{ getQuantity() }}
+        </div>
     </div>
 </div>

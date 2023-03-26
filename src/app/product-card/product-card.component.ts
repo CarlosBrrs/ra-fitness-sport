@@ -12,10 +12,17 @@ export class ProductCardComponent {
   @Input('product') product!: Product;
   @Input('show-actions') showActions: boolean = true;
   @Input('imageUrl') imageUrl!: string;
+  @Input('shopping-cart') shoppingCart: any;
   
   constructor(private cartService: ShoppingCartService) { }
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
+  }
+
+  getQuantity() {
+    if(!this.shoppingCart) return 0;
+    let item = this.shoppingCart.items[this.product.key];
+    return item ? item.quantity : 0;
   }
 }

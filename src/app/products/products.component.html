@@ -5,7 +5,7 @@
             <div class="row g-3 align-items-stretch d-flex">
                 <ng-container *ngFor="let product of filteredProducts">
                     <div class="col-6 col-md-4">
-                        <product-card [product]="product" [imageUrl]="product.imageUrl"></product-card>
+                        <product-card [product]="product" [imageUrl]="product.imageUrl" [shopping-cart]="cart"></product-card>
                     </div>
                 </ng-container>
             </div>
