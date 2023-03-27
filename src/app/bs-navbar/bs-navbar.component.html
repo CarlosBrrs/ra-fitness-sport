@@ -13,7 +13,10 @@
                     <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/shopping-cart">Carrito de compras</a>
+                    <a class="nav-link" routerLink="/shopping-cart">
+                        Carrito de compras
+                        <span class="badge rounded-pill text-bg-info">{{ shoppingCartItemCount }}</span>
+                    </a>
                 </li>
                 <ng-template #anonymousUser>
                     <li class="nav-item">
