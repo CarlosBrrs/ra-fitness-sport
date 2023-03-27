@@ -28,7 +28,6 @@
 }
 
 .description {
-
     min-height: 6em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -45,4 +44,27 @@
 
 .card-footer {
     padding: 0;
+}
+
+.quantity-container {
+    max-width: 100%;
+}
+
+.quantity {
+    text-align: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+/* .card-footer .btn {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+} */
+
+button.btn-secondary {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
