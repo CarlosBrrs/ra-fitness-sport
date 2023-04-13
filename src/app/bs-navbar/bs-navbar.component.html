@@ -15,7 +15,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/shopping-cart">
                         Carrito de compras
-                        <span class="badge rounded-pill text-bg-info">{{ shoppingCartItemCount }}</span>
+                        <span class="badge rounded-pill text-bg-info" *ngIf="cart$ | async as cart">{{ cart.totalItemsCount }}</span>
                     </a>
                 </li>
                 <ng-template #anonymousUser>
